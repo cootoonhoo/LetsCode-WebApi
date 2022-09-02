@@ -51,6 +51,7 @@ namespace CadastroClientes.Controllers
             {
                 return BadRequest();
             }
+            novoCliente.Id = repositoryCliente.ConsultaPorCpf(novoCliente.Cpf)[0].Id;
             return CreatedAtAction(nameof(Inserir), novoCliente);
         }
 
@@ -77,7 +78,7 @@ namespace CadastroClientes.Controllers
             {
                 return NotFound();
             }
-            return Ok(Cliente);
+            return Ok(repositoryCliente.ConsultaPorCpf(Cliente.Cpf));
         }
     }
 }
