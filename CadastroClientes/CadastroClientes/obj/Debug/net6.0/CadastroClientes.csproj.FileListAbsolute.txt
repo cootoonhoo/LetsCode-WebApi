@@ -86,3 +86,7 @@ C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroClientes\obj\Deb
 C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroClientes\obj\Debug\net6.0\CadastroClientes.csproj.CopyComplete
 C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroClientes\obj\Debug\net6.0\CadastroClientes.genruntimeconfig.cache
 C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroClientes\obj\Debug\net6.0\ref\CadastroClientes.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroClientes\bin\Debug\net6.0\CadastroCliente.Core.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroClientes\bin\Debug\net6.0\CadastroCliente.Infra.Data.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroClientes\bin\Debug\net6.0\CadastroCliente.Core.pdb
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroClientes\bin\Debug\net6.0\CadastroCliente.Infra.Data.pdb

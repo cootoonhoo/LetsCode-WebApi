@@ -1,6 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
-using System.Linq;
-using CadastroClientes.Repositories;
+﻿using Microsoft.AspNetCore.Mvc;
+using CadastroClientes.Core.Model;
+using CadastroCliente.Core.Interfaces;
 
 namespace CadastroClientes.Controllers
 {
@@ -12,11 +12,11 @@ namespace CadastroClientes.Controllers
     {
 
         private readonly ILogger<ClienteController> _logger;
-        public ClienteRepository repositoryCliente;
-        public ClienteController(ILogger<ClienteController> logger, IConfiguration configuration)
+        public IClienteService _clienteService;
+        public ClienteController(ILogger<ClienteController> logger, IClienteService clienteService)
         {
             _logger = logger;
-            repositoryCliente = new ClienteRepository(configuration);
+            _clienteService = clienteService;
         }
 
         //GET de todos os clientes
@@ -25,7 +25,7 @@ namespace CadastroClientes.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<List<Cliente>> Get()
         {
-            return Ok(repositoryCliente.Consulta());
+            return Ok(_clienteService.Consulta());
         }
 
         //GET por CPF
@@ -34,11 +34,11 @@ namespace CadastroClientes.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Cliente> GetByCpf(string Cpf)
         {
-            if (repositoryCliente.ConsultaPorCpf(Cpf).Count == 0)
+            if (_clienteService.ConsultaPorCpf(Cpf).Count == 0)
             {
                 return NotFound();
             }
-            return Ok(repositoryCliente.ConsultaPorCpf(Cpf));
+            return Ok(_clienteService.ConsultaPorCpf(Cpf));
         }
 
         //POST de um novo cliente
@@ -47,11 +47,11 @@ namespace CadastroClientes.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<Cliente> Inserir(Cliente novoCliente)
         {
-            if (!repositoryCliente.InserirNovoCliente(novoCliente))
+            if (!_clienteService.InserirNovoCliente(novoCliente))
             {
                 return BadRequest();
             }
-            novoCliente.Id = repositoryCliente.ConsultaPorCpf(novoCliente.Cpf)[0].Id;
+            novoCliente.Id = _clienteService.ConsultaPorCpf(novoCliente.Cpf)[0].Id;
             return CreatedAtAction(nameof(Inserir), novoCliente);
         }
 
@@ -61,7 +61,7 @@ namespace CadastroClientes.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult Delete(string Cpf)
         {
-            if (!repositoryCliente.DeletarCliente(Cpf))
+            if (!_clienteService.DeletarCliente(Cpf))
             {
                 return NotFound();
             }
@@ -74,11 +74,11 @@ namespace CadastroClientes.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<Cliente> Put(string Cpf, [FromBody] Cliente Cliente)
         {
-            if (!repositoryCliente.UpdateCliente(Cliente, Cpf))
+            if (!_clienteService.UpdateCliente(Cliente, Cpf))
             {
                 return NotFound();
             }
-            return Ok(repositoryCliente.ConsultaPorCpf(Cliente.Cpf));
+            return Ok(_clienteService.ConsultaPorCpf(Cliente.Cpf));
         }
     }
 }

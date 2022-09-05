@@ -1,0 +1,15 @@
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\bin\Debug\net6.0\CadastroCliente.Infra.Data.deps.json
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\bin\Debug\net6.0\CadastroCliente.Infra.Data.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\bin\Debug\net6.0\CadastroCliente.Infra.Data.pdb
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\bin\Debug\net6.0\CadastroCliente.Core.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\bin\Debug\net6.0\CadastroCliente.Core.pdb
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\obj\Debug\net6.0\CadastroCliente.Infra.Data.csproj.AssemblyReference.cache
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\obj\Debug\net6.0\CadastroCliente.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\obj\Debug\net6.0\CadastroCliente.Infra.Data.AssemblyInfoInputs.cache
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\obj\Debug\net6.0\CadastroCliente.Infra.Data.AssemblyInfo.cs
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\obj\Debug\net6.0\CadastroCliente.Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\obj\Debug\net6.0\CadastroCliente.Infra.Data.csproj.CopyComplete
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\obj\Debug\net6.0\CadastroCliente.Infra.Data.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\obj\Debug\net6.0\refint\CadastroCliente.Infra.Data.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\obj\Debug\net6.0\CadastroCliente.Infra.Data.pdb
+C:\Users\cooto\Desktop\LetsCode-WebApi\CadastroClientes\CadastroCliente.Infra.Data\obj\Debug\net6.0\ref\CadastroCliente.Infra.Data.dll

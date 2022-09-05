@@ -1,9 +1,12 @@
-﻿using Dapper;
+﻿using CadastroCliente.Core.Interfaces;
+using CadastroClientes.Core.Model;
+using Dapper;
+using Microsoft.Extensions.Configuration;
 using System.Data.SqlClient;
 
-namespace CadastroClientes.Repositories
+namespace CadastroClientes.Infra.Data
 {
-    public class ClienteRepository
+    public class ClienteRepository : IClienteRepository
     {
         private readonly IConfiguration _configuration;
         public ClienteRepository(IConfiguration configuration)
