@@ -1,0 +1,12 @@
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\bin\Debug\net6.0\EventAPI.Core.deps.json
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\bin\Debug\net6.0\EventAPI.Core.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\bin\Debug\net6.0\EventAPI.Core.pdb
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\obj\Debug\net6.0\EventAPI.Core.csproj.AssemblyReference.cache
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\obj\Debug\net6.0\EventAPI.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\obj\Debug\net6.0\EventAPI.Core.AssemblyInfoInputs.cache
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\obj\Debug\net6.0\EventAPI.Core.AssemblyInfo.cs
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\obj\Debug\net6.0\EventAPI.Core.csproj.CoreCompileInputs.cache
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\obj\Debug\net6.0\EventAPI.Core.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\obj\Debug\net6.0\refint\EventAPI.Core.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\obj\Debug\net6.0\EventAPI.Core.pdb
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Core\obj\Debug\net6.0\ref\EventAPI.Core.dll

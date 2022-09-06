@@ -48,7 +48,7 @@ namespace EventAPI.Infra.Data.Repositories
 
         public bool UpdateEvent(Event updateEvent, long EventId)
         {
-            var query = "UPDATE CityEvent VALUES (@Title, @Description, @DateHourEvent, @Local, @Adress, @Price) WHERE CityEvent.IdEvent = @EventId ";
+            var query = "UPDATE CityEvent SET Title = @Title, Description = @Description, DateHourEvent = @DateHourEvent, Local = @Local, Adress = @Adress, Price = @Price WHERE CityEvent.IdEvent = @EventId ";
 
             var Parameters = new DynamicParameters();
             Parameters.Add("Title", updateEvent.Title);
@@ -64,7 +64,7 @@ namespace EventAPI.Infra.Data.Repositories
         }
         public bool DeleteEvent(long id)
         {
-            var query = "DELETE FROM CityEvent Where CityEvent.Id = @id";
+            var query = "DELETE FROM CityEvent Where CityEvent.IdEvent = @id";
             var Parameters = new DynamicParameters();
             Parameters.Add("id", id);
 

@@ -4,7 +4,7 @@ namespace EventAPI.Core.Model
     public class Event
     {
         [Required]
-        public long Id { get; set; }
+        public long IdEvent { get; set; }
         [Required]
         public string Title { get; set; }
         public string Description { get; set; }

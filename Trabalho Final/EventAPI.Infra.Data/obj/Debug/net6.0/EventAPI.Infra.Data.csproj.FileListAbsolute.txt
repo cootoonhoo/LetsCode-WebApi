@@ -1,0 +1,15 @@
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\bin\Debug\net6.0\EventAPI.Infra.Data.deps.json
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\bin\Debug\net6.0\EventAPI.Infra.Data.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\bin\Debug\net6.0\EventAPI.Infra.Data.pdb
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\bin\Debug\net6.0\EventAPI.Core.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\bin\Debug\net6.0\EventAPI.Core.pdb
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\obj\Debug\net6.0\EventAPI.Infra.Data.csproj.AssemblyReference.cache
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\obj\Debug\net6.0\EventAPI.Infra.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\obj\Debug\net6.0\EventAPI.Infra.Data.AssemblyInfoInputs.cache
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\obj\Debug\net6.0\EventAPI.Infra.Data.AssemblyInfo.cs
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\obj\Debug\net6.0\EventAPI.Infra.Data.csproj.CoreCompileInputs.cache
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\obj\Debug\net6.0\EventAPI.Infra.Data.csproj.CopyComplete
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\obj\Debug\net6.0\EventAPI.Infra.Data.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\obj\Debug\net6.0\refint\EventAPI.Infra.Data.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\obj\Debug\net6.0\EventAPI.Infra.Data.pdb
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI.Infra.Data\obj\Debug\net6.0\ref\EventAPI.Infra.Data.dll
