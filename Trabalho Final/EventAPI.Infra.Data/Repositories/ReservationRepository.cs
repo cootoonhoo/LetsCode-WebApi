@@ -24,7 +24,7 @@ namespace EventAPI.Infra.Data.Repositories
 
         public List<Reservation> GetReservationsByEventId(long EventId)
         {
-            var query = "SELECT * FROM EventReservation WHERE EventReservation.EventId = @EventId";
+            var query = "SELECT * FROM EventReservation WHERE EventReservation.IdEvent = @EventId";
 
             var Parameters = new DynamicParameters();
             Parameters.Add("EventId", EventId);

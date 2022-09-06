@@ -4,7 +4,6 @@ namespace EventAPI.Core.Model
 {
     public class Reservation
     {
-        [Required]
         public long IdReservation { get; set; }
         [Required]
         public long IdEvent { get; set; }
