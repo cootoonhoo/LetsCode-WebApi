@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using CadastroClientes.Core.Model;
 using CadastroCliente.Core.Interfaces;
+using CadastroClientes.Filters;
 
 namespace CadastroClientes.Controllers
 {
@@ -21,7 +22,6 @@ namespace CadastroClientes.Controllers
 
         //GET de todos os clientes
         [HttpGet("/Cliente/Consultar")]
-
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<List<Cliente>> Get()
         {
