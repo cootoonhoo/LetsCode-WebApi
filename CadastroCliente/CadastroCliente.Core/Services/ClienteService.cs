@@ -21,7 +21,6 @@ namespace CadastroCliente.Core.Services
         {
             return _clienteRepository.ConsultaPorCpf(cpf);
         }
-
         public bool DeletarCliente(string Cpf)
         {
             return _clienteRepository.DeletarCliente(Cpf);

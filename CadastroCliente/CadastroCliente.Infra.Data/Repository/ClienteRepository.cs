@@ -66,5 +66,6 @@ namespace CadastroClientes.Infra.Data
             using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
             return conn.Execute(query, Parameters) == 1;
         }
+
     }
 }

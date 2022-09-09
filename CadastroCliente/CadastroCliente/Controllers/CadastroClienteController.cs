@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using CadastroClientes.Core.Model;
 using CadastroCliente.Core.Interfaces;
+using CadastroCliente.Filters;
 
 namespace CadastroClientes.Controllers
 {
@@ -8,6 +9,8 @@ namespace CadastroClientes.Controllers
     [Route("[controller]")]
     [Consumes("application/json")]
     [Produces("application/json")]
+    [TypeFilter(typeof(LogAuthorizationFilter))]
+    [TypeFilter(typeof(TempoDeAplicaçãoResourceFilter))]
     public class ClienteController : ControllerBase
     {
 
@@ -21,7 +24,6 @@ namespace CadastroClientes.Controllers
 
         //GET de todos os clientes
         [HttpGet("/Cliente/Consultar")]
-
         [ProducesResponseType(StatusCodes.Status200OK)]
         public ActionResult<List<Cliente>> Get()
         {
@@ -32,11 +34,13 @@ namespace CadastroClientes.Controllers
         [HttpGet("/Cliente/{Cpf}/ConsultarPorCpf")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ServiceFilter(typeof(GarantiaClienteExisteActionFilter))]
         public ActionResult<Cliente> GetByCpf(string Cpf)
         {
-            if (_clienteService.ConsultaPorCpf(Cpf).Count == 0)
+            if (_clienteService.ConsultaPorCpf(Cpf) == null)
             {
-                return NotFound();
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
             return Ok(_clienteService.ConsultaPorCpf(Cpf));
         }
@@ -45,6 +49,9 @@ namespace CadastroClientes.Controllers
         [HttpPost("/Cliente/Inserir")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ServiceFilter(typeof(VerificandoCpfExisteActionFilter))]
         public ActionResult<Cliente> Inserir(Cliente novoCliente)
         {
             if (!_clienteService.InserirNovoCliente(novoCliente))
@@ -58,12 +65,15 @@ namespace CadastroClientes.Controllers
         //DELET por CPF
         [HttpDelete("/Cliente/{Cpf}/Deletar")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ServiceFilter(typeof(GarantiaClienteExisteActionFilter))]
         public ActionResult Delete(string Cpf)
         {
             if (!_clienteService.DeletarCliente(Cpf))
             {
-                return NotFound();
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
             return NoContent();
         }
@@ -71,12 +81,15 @@ namespace CadastroClientes.Controllers
         //PUT por CPF
         [HttpPut("/Cliente/{Cpf}/Atualizar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ServiceFilter(typeof(GarantiaClienteExisteActionFilter))]
         public ActionResult<Cliente> Put(string Cpf, [FromBody] Cliente Cliente)
         {
             if (!_clienteService.UpdateCliente(Cliente, Cpf))
             {
-                return NotFound();
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
             return Ok(_clienteService.ConsultaPorCpf(Cliente.Cpf));
         }
