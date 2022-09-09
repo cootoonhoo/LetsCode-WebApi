@@ -17,7 +17,6 @@ namespace CadastroCliente.Filters
             Console.WriteLine("EXCEÇÃO:");
             Console.WriteLine($"Tipo da EXCEÇÃO: {context.Exception.GetType().Name}");
             Console.WriteLine($"Menssagem -> {context.Exception.Message}");
-            Console.WriteLine($"Stacktree -> {context.Exception.InnerException.StackTrace}");
             Console.WriteLine();
 
             switch (context.Exception)

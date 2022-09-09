@@ -11,6 +11,7 @@ namespace CadastroClientes.Controllers
     [Produces("application/json")]
     [TypeFilter(typeof(LogAuthorizationFilter))]
     [TypeFilter(typeof(TempoDeAplicaçãoResourceFilter))]
+    [TypeFilter(typeof(GeneralExcpetionFilter))]
     public class ClienteController : ControllerBase
     {
 
