@@ -44,20 +44,39 @@ namespace EventAPI.Infra.Data.Repositories
             return conn.Query<EventReservation>(query, Parameters).ToList();
         }
 
-
         public bool PostReservation(EventReservation newReservation)
         {
-            throw new NotImplementedException();
+            var query = "INSERT INTO EventReservation VALUES (@idEvent, @PersonName, @Quantity)";
+
+            var Parameters = new DynamicParameters();
+            Parameters.Add("idEvent", newReservation.IdEvent);
+            Parameters.Add("PersonName", newReservation.PersonName);
+            Parameters.Add("Quantity", newReservation.Quantity);
+
+            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            return conn.Execute(query, Parameters) == 1;
         }
 
         public bool RemoveReservation(long ReservationId)
         {
-            throw new NotImplementedException();
+            var query = "DELETE FROM EventReservation Where EventReservation.Id = @ReservationId";
+            var Parameters = new DynamicParameters();
+            Parameters.Add("ReservationId", ReservationId);
+
+            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            return conn.Execute(query, Parameters) == 1;
         }
 
         public bool UpdateQuantity(long ReservationId, int Quantity)
         {
-            throw new NotImplementedException();
+            var query = "UPDATE EventReservation VALUES @Quantity) WHERE EventReservation.Reservation = @ReservationId ";
+
+            var Parameters = new DynamicParameters();
+            Parameters.Add("Quantity", Quantity);
+            Parameters.Add("ReservationId", ReservationId);
+
+            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            return conn.Execute(query, Parameters) == 1;
         }
     }
 }
