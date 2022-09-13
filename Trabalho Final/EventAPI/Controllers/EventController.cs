@@ -19,12 +19,17 @@ namespace EventAPI.Controllers
             _reservationService = reservationService;
         }
 
-        //[HttpGet(Name = "Event/AllEvents")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public ActionResult<List<CityEvent>> GetAllEvents()
-        //{
-        //    return Ok(_eventService.GetEvents());
-        //}
+        [HttpGet("/Event/GetByTitle/{EventTilte}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<List<CityEvent>> GetByTitle(string EventTilte)
+        {
+            if (_eventService.GetEventsByTitle(EventTilte).Count == 0) {
+                return NotFound();
+            }
+            return Ok(_eventService.GetEventsByTitle(EventTilte));
+        }
 
         //[HttpGet("/Event/EventByTilte/{Title}")]
         //[ProducesResponseType(StatusCodes.Status200OK)]

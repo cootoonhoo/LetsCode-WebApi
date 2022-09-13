@@ -4,5 +4,6 @@ namespace EventAPI.Core.Interfaces
 {
     public interface IReservationService
     {
+
     }
 }
