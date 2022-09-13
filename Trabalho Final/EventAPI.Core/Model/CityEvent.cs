@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 namespace EventAPI.Core.Model
 {
-    public class Event
+    public class CityEvent
     {
         [Required]
         public long IdEvent { get; set; }

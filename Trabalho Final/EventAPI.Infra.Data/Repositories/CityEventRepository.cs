@@ -6,20 +6,20 @@ using System.Data.SqlClient;
 
 namespace EventAPI.Infra.Data.Repositories
 {
-    public class EventRepository : IEventRepository
+    public class CityEventRepository : IEventRepository
     {
         private readonly IConfiguration _configuration;
-        public EventRepository(IConfiguration configuration)
+        public CityEventRepository(IConfiguration configuration)
         {
             _configuration = configuration;
         }
-        public List<Event> GetEvents()
+        public List<CityEvent> GetEvents()
         {
             var query = "SELECT * FROM CityEvent";
             using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
-            return conn.Query<Event>(query).ToList();
+            return conn.Query<CityEvent>(query).ToList();
         }
-        public List<Event> GetEventByTitle(string title)
+        public List<CityEvent> GetEventByTitle(string title)
         {
             var query = "SELECT * FROM CityEvent WHERE CityEvent.Title = @title";
 
@@ -27,10 +27,10 @@ namespace EventAPI.Infra.Data.Repositories
             Parameters.Add("title", title);
 
             using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
-            return conn.Query<Event>(query, Parameters).ToList();
+            return conn.Query<CityEvent>(query, Parameters).ToList();
         }
 
-        public bool InsertNewEvent(Event newEvent)
+        public bool InsertNewEvent(CityEvent newEvent)
         {
             var query = "INSERT INTO CityEvent VALUES (@Title, @Description, @DateHourEvent, @Local, @Adress, @Price)";
 
@@ -46,7 +46,7 @@ namespace EventAPI.Infra.Data.Repositories
             return conn.Execute(query, Parameters) == 1;
         }
 
-        public bool UpdateEvent(Event updateEvent, long EventId)
+        public bool UpdateEvent(CityEvent updateEvent, long EventId)
         {
             var query = "UPDATE CityEvent SET Title = @Title, Description = @Description, DateHourEvent = @DateHourEvent, Local = @Local, Adress = @Adress, Price = @Price WHERE CityEvent.IdEvent = @EventId ";
 

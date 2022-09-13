@@ -10,10 +10,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IReservationService, ReservationService>();
-builder.Services.AddScoped<IEventService, EventService>();
-builder.Services.AddScoped<IReservationsRepository, ReservationRepository>();
-builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<IReservationService, EventReservationService>();
+builder.Services.AddScoped<IEventService, CityEventService>();
+builder.Services.AddScoped<IReservationsRepository, EventReservationRepository>();
+builder.Services.AddScoped<IEventRepository, CityEventRepository>();
 
 var app = builder.Build();
 

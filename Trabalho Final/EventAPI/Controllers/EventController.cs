@@ -19,117 +19,134 @@ namespace EventAPI.Controllers
             _reservationService = reservationService;
         }
 
-        [HttpGet(Name = "Event/GetAllEvents")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<List<Event>> GetAllEvents()
-        {
-            return Ok(_eventService.GetEvents());
-        }
+        //[HttpGet(Name = "Event/AllEvents")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public ActionResult<List<CityEvent>> GetAllEvents()
+        //{
+        //    return Ok(_eventService.GetEvents());
+        //}
 
-        [HttpGet("/Event/GetEventByTilte/{Title}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<List<Event>> GetEventByTitle(string Title) {
-            if (_eventService.GetEventByTitle(Title).Count == 0)
-            {
-                return NotFound();
-            }
-            return Ok(_eventService.GetEventByTitle(Title));
-        }
-        [HttpPost("/Event/Insert")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<Event> InsertEvent(Event newEvent)
-        {
-            if (!_eventService.InsertNewEvent(newEvent))
-            {
-                return BadRequest();
-            }
-            //TODO: Atualizar o ID pelos Filters 
-            return CreatedAtAction(nameof(InsertEvent), newEvent);
-        }
-        [HttpPut("/Event/UpdateEvent/{EventId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<Event> Put(long EventId, [FromBody] Event Event)
-        {
-            if (!_eventService.UpdateEvent(Event, EventId))
-            {
-                return NotFound();
-            }
-            return Ok(_eventService.GetEventByTitle(Event.Title));
-        }
+        //[HttpGet("/Event/EventByTilte/{Title}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public ActionResult<List<CityEvent>> GetEventByTitle(string Title) {
+        //    if (_eventService.GetEventByTitle(Title).Count == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(_eventService.GetEventByTitle(Title));
+        //}
+        //[HttpPost("/Event/Insert")]
+        //[ProducesResponseType(StatusCodes.Status201Created)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public ActionResult<CityEvent> InsertEvent(CityEvent newEvent)
+        //{
+        //    if (!_eventService.InsertNewEvent(newEvent))
+        //    {
+        //        return BadRequest();
+        //    }
+        //    //TODO: Atualizar o ID pelos Filters 
+        //    return CreatedAtAction(nameof(InsertEvent), newEvent);
+        //}
+        //[HttpPut("/Event/Update/{EventId}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public ActionResult<CityEvent> Put(long EventId, [FromBody] CityEvent Event)
+        //{
+        //    if (!_eventService.UpdateEvent(Event, EventId))
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(_eventService.GetEventByTitle(Event.Title));
+        //}
 
-        [HttpDelete("/Event/DeletEvent/{EventId}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult Delete(long EventId)
-        {
-            if (!_eventService.DeleteEvent(EventId))
-            {
-                return NotFound();
-            }
-            return NoContent();
-        }
-        [HttpGet("/Event/GetAllReservations")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<List<Reservation>> GetAllReservations(){
-            return Ok(_reservationService.GetAllReservations());
-        }
-        [HttpGet("/Event/GetAllReservationsByEventId/{EventId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<List<Reservation>> GetReservationsByEventId(long EventId)
-        {
-            if (_reservationService.GetReservationsByEventId(EventId).Count == 0)
-            {
-                return NotFound();
-            }
-            return Ok(_reservationService.GetReservationsByEventId(EventId));
-        }
+        //[HttpDelete("/Event/Delete/{EventId}")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public ActionResult Delete(long EventId)
+        //{
+        //    if (!_eventService.DeleteEvent(EventId))
+        //    {
+        //        return NotFound();
+        //    }
+        //    return NoContent();
+        //}
 
-        [HttpGet("/Event/GetReservationsById/{ReservId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public ActionResult<List<Reservation>> GetReservationsByReservationId(long ReservId)
-        {
-            if (_reservationService.GetReservationsByReservationId(ReservId).Count == 0)
-            {
-                return NotFound();
-            }
-            return Ok(_reservationService.GetReservationsByReservationId(ReservId));
-        }
-        [HttpPost("/Event/InsertReservation")]
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public ActionResult<Reservation> InsertReservation([FromBody]Reservation newReserv)
-        {
-            if (!_reservationService.InsertNewReservation(newReserv))
-            {
-                return BadRequest();
-            }
-            //TODO: Atualizar o ID pelos Filters 
-            return CreatedAtAction(nameof(InsertReservation), newReserv);
-        }
-        [HttpPut("/Event/UpdateReserv/{ReservId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<Event> UpdateReserv(long ReservId, [FromBody] Reservation Resev)
-        {
-            if (!_reservationService.UpdateReservation(Resev, ReservId))
-            {
-                return NotFound();
-            }
-            return Ok(_reservationService.GetReservationsByReservationId(ReservId));
-        }
-        [HttpDelete("/Event/DeletReservation/{ReservId}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult DeleteReservation(long ReservId)
-        {
-            if (!_reservationService.DeleteReservation(ReservId))
-            {
-                return NotFound();
-            }
-            return NoContent();
-        }
+        //[HttpGet("/Reservation/AllReservations")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //public ActionResult<List<EventReservation>> GetAllReservations(){
+        //    return Ok(_reservationService.GetAllReservations());
+        //}
+        //[HttpGet("/Reservation/ReservationsById/{ReservationId}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public ActionResult<List<EventReservation>> GetReservationsByReservationId(long ReservationId)
+        //{
+        //    if (_reservationService.GetReservationsByReservationId(ReservationId).Count == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(_reservationService.GetReservationsByReservationId(ReservationId));
+        //}
+
+        //[HttpGet("/Reservation/AllReservationsByEventId/{EventId}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public ActionResult<List<EventReservation>> GetReservationsByEventId(long EventId)
+        //{
+        //    if (_reservationService.GetReservationsByEventId(EventId).Count == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(_reservationService.GetReservationsByEventId(EventId));
+        //}
+
+        //[HttpGet("/Reservation/GetReservationByPersonAndTitle/{PersonName},{EventTitle}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public ActionResult<List<EventReservation>> GetReservationByPersonAndTitle(string PersonName, string EventTitle)
+        //{
+        //    if (_reservationService.GetReservationByPersonAndTitle(PersonName, EventTitle).Count == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(GetReservationByPersonAndTitle(PersonName, EventTitle));
+        //}
+
+        //[HttpPost("/Reservation/Insert")]
+        //[ProducesResponseType(StatusCodes.Status201Created)]
+        //[ProducesResponseType(StatusCodes.Status400BadRequest)]
+        //public ActionResult<EventReservation> InsertReservation([FromBody]EventReservation newReserv)
+        //{
+        //    if (!_reservationService.InsertNewReservation(newReserv))
+        //    {
+        //        return BadRequest();
+        //    }
+        //    //TODO: Atualizar o ID pelos Filters 
+        //    return CreatedAtAction(nameof(InsertReservation), newReserv);
+        //}
+        //[HttpPut("/Reservation/Update/{ReservationId}")]
+        //[ProducesResponseType(StatusCodes.Status200OK)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public ActionResult<CityEvent> UpdateReserv(long ReservationId, [FromBody] EventReservation Reserv)
+        //{
+        //    if (!_reservationService.UpdateReservation(Reserv, ReservationId))
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(_reservationService.GetReservationsByReservationId(ReservationId));
+        //}
+
+        //[HttpDelete("/Reservation/Delete/{ReservationId}")]
+        //[ProducesResponseType(StatusCodes.Status204NoContent)]
+        //[ProducesResponseType(StatusCodes.Status404NotFound)]
+        //public ActionResult DeleteReservation(long ReservationId)
+        //{
+        //    if (!_reservationService.DeleteReservation(ReservationId))
+        //    {
+        //        return NotFound();
+        //    }
+        //    return NoContent();
+        //}
     }
 }

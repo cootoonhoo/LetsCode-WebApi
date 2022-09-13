@@ -2,7 +2,7 @@
 
 namespace EventAPI.Core.Model
 {
-    public class Reservation
+    public class EventReservation
     {
         public long IdReservation { get; set; }
         [Required]

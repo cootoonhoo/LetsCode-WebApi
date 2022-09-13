@@ -13,6 +13,9 @@ namespace CadastroClientes.Core.Model
         public string Nome { get; set; }
         [Required(ErrorMessage = "Data de nascimento é obrigatório")]
         public DateTime dataNascimento { get; set; }
+        [Required]
+        public string permissao { get; set; }
+
         public int Idade
         {
             get
