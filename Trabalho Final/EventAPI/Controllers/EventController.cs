@@ -119,34 +119,41 @@ namespace EventAPI.Controllers
         }
         #endregion
 
-        //[HttpGet("/Reservation/AllReservations")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //public ActionResult<List<EventReservation>> GetAllReservations(){
-        //    return Ok(_reservationService.GetAllReservations());
-        //}
-        //[HttpGet("/Reservation/ReservationsById/{ReservationId}")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //public ActionResult<List<EventReservation>> GetReservationsByReservationId(long ReservationId)
-        //{
-        //    if (_reservationService.GetReservationsByReservationId(ReservationId).Count == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(_reservationService.GetReservationsByReservationId(ReservationId));
-        //}
+        #region "Get todos as reservas"
+        [HttpGet("/Reservation/Get")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public ActionResult<List<EventReservation>> GetAllReservations(){
+            return Ok(_reservationService.GetAll());
+        }
+        #endregion
 
-        //[HttpGet("/Reservation/AllReservationsByEventId/{EventId}")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //public ActionResult<List<EventReservation>> GetReservationsByEventId(long EventId)
-        //{
-        //    if (_reservationService.GetReservationsByEventId(EventId).Count == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(_reservationService.GetReservationsByEventId(EventId));
-        //}
+        #region"Get todas reservas por evento"
+        [HttpGet("/Reservation/AllReservationsInEvent/{EventId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        public ActionResult<List<EventReservation>> GetReservationsInEvent(long EventId)
+        {
+            if (_reservationService.GetReservationsInEvent(EventId).Count == 0)
+            {
+                return NoContent();
+            }
+            return Ok(_reservationService.GetReservationsInEvent(EventId));
+        }
+        #endregion
+
+        #region "Get por NomePessoa e Titulo evento"
+        [HttpGet("/Reservation/GetByPersonNameAndEventTitle/{Name},{EventTitle}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<List<EventReservation>> GetReservationsByEventId(string Name, string EventTitle)
+        {
+            if (_reservationService.GetReservationByNameAndEvent(Name, EventTitle).Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(_reservationService.GetReservationByNameAndEvent(Name, EventTitle));
+        }
+        #endregion
 
         //[HttpGet("/Reservation/GetReservationByPersonAndTitle/{PersonName},{EventTitle}")]
         //[ProducesResponseType(StatusCodes.Status200OK)]
