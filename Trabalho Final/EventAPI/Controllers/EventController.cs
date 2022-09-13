@@ -2,6 +2,7 @@ using EventAPI.Core.Services;
 using EventAPI.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using EventAPI.Core.Model;
+using EventAPI.Filters.ActionFilter;
 
 namespace EventAPI.Controllers
 {
@@ -45,16 +46,21 @@ namespace EventAPI.Controllers
         }
 
 
-        //[HttpGet("/Event/EventByTilte/{Title}")]
-        //[ProducesResponseType(StatusCodes.Status200OK)]
-        //[ProducesResponseType(StatusCodes.Status404NotFound)]
-        //public ActionResult<List<CityEvent>> GetEventByTitle(string Title) {
-        //    if (_eventService.GetEventByTitle(Title).Count == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(_eventService.GetEventByTitle(Title));
-        //}
+        [HttpGet("/Event/GetByRangePriceAndAndDate/{lowestValue},{highetsValue},{Date}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [TypeFilter(typeof(VerifyHighLowPriceActionFilter))]
+        public ActionResult<List<CityEvent>> GetEventsByRangePriceAndDate(decimal lowestValue, decimal highetsValue, DateTime Date)
+        {
+            if (_eventService.GetEventsByRangePriceAndDate(lowestValue, highetsValue,Date).Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(_eventService.GetEventsByRangePriceAndDate(lowestValue, highetsValue, Date));
+        }
+
+
         //[HttpPost("/Event/Insert")]
         //[ProducesResponseType(StatusCodes.Status201Created)]
         //[ProducesResponseType(StatusCodes.Status400BadRequest)]

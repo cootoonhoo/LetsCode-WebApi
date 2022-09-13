@@ -13,6 +13,16 @@ namespace EventAPI.Infra.Data.Repositories
         {
             _configuration = configuration;
         }
+        public List<CityEvent> GetEventsByTitle(string Title)
+        {
+            var query = "SELECT * FROM CityEvent WHERE CityEvent.Title LIKE @Title";
+
+            var Parameters = new DynamicParameters();
+            Parameters.Add("Title", $"%{Title}%");
+
+            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            return conn.Query<CityEvent>(query, Parameters).ToList();
+        }
 
         public List<CityEvent> GetEventsByLocalAndDate(string Local, DateTime Date)
         {
@@ -28,19 +38,17 @@ namespace EventAPI.Infra.Data.Repositories
 
         public List<CityEvent> GetEventsByRangePriceAndDate(decimal lowestValue, decimal highetsValue, DateTime Date)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<CityEvent> GetEventsByTitle(string Title)
-        {
-            var query = "SELECT * FROM CityEvent WHERE CityEvent.Title LIKE @Title";
+            var query = "SELECT * FROM CityEvent WHERE CityEvent.Price BETWEEN @Lowest AND @Highest AND CityEvent.DateHourEvent = @Date";
 
             var Parameters = new DynamicParameters();
-            Parameters.Add("Title", $"%{Title}%");
+            Parameters.Add("Lowest", $"%{lowestValue}%");
+            Parameters.Add("Highest", $"%{highetsValue}%");
+            Parameters.Add("Date", Date.ToString("yyyy-MM-dd"));
 
             using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
             return conn.Query<CityEvent>(query, Parameters).ToList();
         }
+
 
         public bool PostEvent(CityEvent newEvent)
         {
