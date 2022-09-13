@@ -16,7 +16,14 @@ namespace EventAPI.Infra.Data.Repositories
 
         public List<CityEvent> GetEventsByLocalAndDate(string Local, DateTime Date)
         {
-            throw new NotImplementedException();
+            var query = "SELECT * FROM CityEvent WHERE CityEvent.Local LIKE @Local AND CityEvent.DateHourEvent = @Date";
+
+            var Parameters = new DynamicParameters();
+            Parameters.Add("Local", $"%{Local}%");
+            Parameters.Add("Date", Date.ToString("yyyy-MM-dd"));
+
+            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            return conn.Query<CityEvent>(query, Parameters).ToList();
         }
 
         public List<CityEvent> GetEventsByRangePriceAndDate(decimal lowestValue, decimal highetsValue, DateTime Date)

@@ -31,6 +31,20 @@ namespace EventAPI.Controllers
             return Ok(_eventService.GetEventsByTitle(EventTilte));
         }
 
+        [HttpGet("/Event/GetByLocalAndDate/{Local},{Date}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<List<CityEvent>> GetEventsByLocalAndDate(string Local, DateTime Date)
+        {
+            if (_eventService.GetEventsByLocalAndDate(Local,Date).Count == 0)
+            {
+                return NotFound();
+            }
+            return Ok(_eventService.GetEventsByLocalAndDate(Local, Date));
+        }
+
+
         //[HttpGet("/Event/EventByTilte/{Title}")]
         //[ProducesResponseType(StatusCodes.Status200OK)]
         //[ProducesResponseType(StatusCodes.Status404NotFound)]
