@@ -10,5 +10,10 @@ namespace EventAPI.Core.Services
         {
             _reservationRepository = reservationRepository;
         }
+
+        public List<EventReservation> GetReservationsInEvent(long EventId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

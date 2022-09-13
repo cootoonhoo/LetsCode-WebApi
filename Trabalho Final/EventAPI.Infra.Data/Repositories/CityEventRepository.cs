@@ -13,6 +13,13 @@ namespace EventAPI.Infra.Data.Repositories
         {
             _configuration = configuration;
         }
+        public List<CityEvent> GetAllEvents()
+        {
+            var query = "SELECT * FROM CityEvent";
+            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            return conn.Query<CityEvent>(query).ToList(); ;
+        }
+
         public List<CityEvent> GetEventsByTitle(string Title)
         {
             var query = "SELECT * FROM CityEvent WHERE CityEvent.Title LIKE @Title";
@@ -49,20 +56,48 @@ namespace EventAPI.Infra.Data.Repositories
             return conn.Query<CityEvent>(query, Parameters).ToList();
         }
 
-
         public bool PostEvent(CityEvent newEvent)
         {
-            throw new NotImplementedException();
+            var query = "INSERT INTO CityEvent VALUES (@Title, @Description, @DateHourEvent, @Local, @Adress, @Price)";
+
+            var Parameters = new DynamicParameters();
+            Parameters.Add("Title", newEvent.Title);
+            Parameters.Add("Description", newEvent.Description);
+            Parameters.Add("DateHourEvent", newEvent.DateHourEvent.ToString("yyyy-MM-dd"));
+            Parameters.Add("Local", newEvent.Local);
+            Parameters.Add("Adress", newEvent.Adress);
+            Parameters.Add("Price", newEvent.Price);
+
+            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            return conn.Execute(query, Parameters) == 1;
         }
 
         public bool RemoveEvent(long IdEvent)
         {
-            throw new NotImplementedException();
+            var query = "DELETE FROM CityEvent Where CityEvent.IdEvent = @id";
+            var Parameters = new DynamicParameters();
+            Parameters.Add("id", IdEvent);
+
+            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            return conn.Execute(query, Parameters) == 1;
         }
 
-        public bool UpdateEvent(long IdEvent, CityEvent updatedEvent)
-        {   
-            throw new NotImplementedException();
+        public bool UpdateEvent(long IdEvent, CityEvent updateEvent)
+        {
+            var query = "UPDATE CityEvent SET Title = @Title, Description = @Description, DateHourEvent = @DateHourEvent, Local = @Local, Adress = @Adress, Price = @Price WHERE CityEvent.IdEvent = @EventId ";
+
+            var Parameters = new DynamicParameters();
+            Parameters.Add("Title", updateEvent.Title);
+            Parameters.Add("Description", updateEvent.Description);
+            Parameters.Add("DateHourEvent", updateEvent.DateHourEvent.ToString("yyyy-MM-dd"));
+            Parameters.Add("Local", updateEvent.Local);
+            Parameters.Add("Adress", updateEvent.Adress);
+            Parameters.Add("Price", updateEvent.Price);
+            Parameters.Add("EventId", IdEvent);
+
+            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+            return conn.Execute(query, Parameters) == 1;
         }
+
     }
 }

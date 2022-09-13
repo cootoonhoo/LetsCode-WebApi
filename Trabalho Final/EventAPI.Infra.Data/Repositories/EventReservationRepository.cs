@@ -13,5 +13,10 @@ namespace EventAPI.Infra.Data.Repositories
         {
             _configuration = configuration;
         }
+
+        public List<EventReservation> GetReservationsInEvent(long EventId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

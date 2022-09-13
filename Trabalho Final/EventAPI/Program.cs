@@ -1,5 +1,6 @@
 using EventAPI.Core.Interfaces;
 using EventAPI.Core.Services;
+using EventAPI.Filters.ActionFilter;
 using EventAPI.Infra.Data.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,7 @@ builder.Services.AddScoped<IReservationService, EventReservationService>();
 builder.Services.AddScoped<IEventService, CityEventService>();
 builder.Services.AddScoped<IReservationsRepository, EventReservationRepository>();
 builder.Services.AddScoped<IEventRepository, CityEventRepository>();
+builder.Services.AddScoped<AudienceVerifyActionFilter>();
 
 var app = builder.Build();
 

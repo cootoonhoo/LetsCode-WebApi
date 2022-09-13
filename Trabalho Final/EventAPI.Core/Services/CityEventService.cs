@@ -11,6 +11,11 @@ namespace EventAPI.Core.Services
             _eventRepository = eventRepository;
         }
 
+        public List<CityEvent> GetAllEvents()
+        {
+            return _eventRepository.GetAllEvents();
+        }
+
         public List<CityEvent> GetEventsByLocalAndDate(string Local, DateTime Date)
         {
             return _eventRepository.GetEventsByLocalAndDate(Local,Date);
