@@ -21,19 +21,5 @@ namespace EventAPI.Core.Services
         {
             return _clienteRepository.ConsultaPorCpf(cpf);
         }
-        public bool DeletarCliente(string Cpf)
-        {
-            return _clienteRepository.DeletarCliente(Cpf);
-        }
-
-        public bool InserirNovoCliente(Cliente novoCliente)
-        {
-            return _clienteRepository.InserirNovoCliente(novoCliente);
-        }
-
-        public bool UpdateCliente(Cliente cliente, string CpfCon)
-        {
-            return _clienteRepository.UpdateCliente(cliente, CpfCon);
-        }
     }
 }

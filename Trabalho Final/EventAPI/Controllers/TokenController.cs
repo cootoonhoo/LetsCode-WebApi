@@ -1,4 +1,5 @@
 ﻿using EventAPI.Core.Interfaces;
+using EventAPI.Core.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventAPI.Controllers
@@ -24,6 +25,11 @@ namespace EventAPI.Controllers
                 return BadRequest();
             }
             return Ok(_tokenService.GenerateTokenEventAPI(client.Nome, client.permissao));
+        }
+        [HttpGet("/Token/ClientList")]
+        public ActionResult<List<Cliente>> GetClients()
+        {
+            return Ok(_clientService.Consulta());
         }
     }
 }
