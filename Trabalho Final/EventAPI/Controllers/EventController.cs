@@ -23,7 +23,6 @@ namespace EventAPI.Controllers
         #region "Get todos os eventos"
         [HttpGet("/Event/Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [Authorize(Roles = "admin")]
         public ActionResult<List<CityEvent>> Get()
         {
             return Ok(_eventService.GetAllEvents());
