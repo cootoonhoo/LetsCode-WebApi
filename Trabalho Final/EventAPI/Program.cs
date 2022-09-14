@@ -22,6 +22,9 @@ builder.Services.AddScoped<IEventService, CityEventService>();
 builder.Services.AddScoped<IReservationsRepository, EventReservationRepository>();
 builder.Services.AddScoped<IEventRepository, CityEventRepository>();
 builder.Services.AddScoped<AudienceVerifyActionFilter>();
+builder.Services.AddScoped<IClienteRepository, ClienteRepository>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<ITokenService, TokenService>();
 
 var app = builder.Build();
 
