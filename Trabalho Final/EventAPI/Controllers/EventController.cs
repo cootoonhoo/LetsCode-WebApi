@@ -3,6 +3,7 @@ using EventAPI.Core.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using EventAPI.Core.Model;
 using EventAPI.Filters.ActionFilter;
+using EventAPI.Filters;
 
 namespace EventAPI.Controllers
 {
@@ -134,8 +135,9 @@ namespace EventAPI.Controllers
         #region"Get todas reservas por evento"
         [HttpGet("/Reservation/AllReservationsInEvent/{EventId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public ActionResult<List<EventReservation>> GetReservationsInEvent(long EventId)
         {
             if (_reservationService.GetReservationsInEvent(EventId).Count == 0)
@@ -149,6 +151,7 @@ namespace EventAPI.Controllers
         #region "Get por NomePessoa e Titulo evento"
         [HttpGet("/Reservation/GetByPersonNameAndEventTitle/{Name},{EventTitle}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<List<EventReservation>> GetReservationsByEventId(string Name, string EventTitle)
         {
@@ -177,6 +180,7 @@ namespace EventAPI.Controllers
         #region"Update quantidade de reservas"
         [HttpPut("/Reservation/UpdateQuantity/{ReservationId},{Quantity}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<CityEvent> UpdateQuantity(long ReservationId, int Quantity)
         {
