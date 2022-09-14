@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using EventAPI.Core.Model;
 using EventAPI.Filters.ActionFilter;
 using EventAPI.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EventAPI.Controllers
 {
@@ -22,6 +23,7 @@ namespace EventAPI.Controllers
         #region "Get todos os eventos"
         [HttpGet("/Event/Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize(Roles = "admin")]
         public ActionResult<List<CityEvent>> Get()
         {
             return Ok(_eventService.GetAllEvents());
@@ -58,7 +60,7 @@ namespace EventAPI.Controllers
         #endregion
 
         #region "Get evento por range de preço e data"
-        [HttpGet("/Event/GetByRangePriceAndAndDate/{lowestValue},{highetsValue},{Date}")]
+        [HttpGet("/Event/GetByRangePriceAndDate/{lowestValue},{highetsValue},{Date}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -73,10 +75,13 @@ namespace EventAPI.Controllers
         }
         #endregion
 
-        #region"Post de evento"
+        #region"Post de evento | AUTENTICADO E AUTORIZADO(admin)"
         [HttpPost("/Event/Post")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize(Roles = "admin")]
         public ActionResult<CityEvent> InsertEvent(CityEvent newEvent)
         {
             if (!_eventService.PostEvent(newEvent))
@@ -87,10 +92,13 @@ namespace EventAPI.Controllers
         }
         #endregion
 
-        #region "Update de evento"
+        #region "Update de evento | AUTENTICADO E AUTORIZADO(admin)"
         [HttpPut("/Event/Update/{EventId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize(Roles = "admin")]
         public ActionResult<CityEvent> Put(long EventId, [FromBody] CityEvent Event)
         {
             if (!_eventService.UpdateEvent(EventId, Event))
@@ -101,13 +109,16 @@ namespace EventAPI.Controllers
         }
         #endregion
 
-        #region "Remove evento"
+        #region "Remove evento | AUTENTICADO E AUTORIZADO(admin)"
         [HttpDelete("/Event/Remove/{EventId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ServiceFilter(typeof(AudienceVerifyActionFilter))]
+        [Authorize(Roles = "admin")]
         public ActionResult Delete(long EventId)
         {
             if (!_eventService.RemoveEvent(EventId))

@@ -4,9 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using EventAPI.Core.Model;
 using EventAPI.Filters.ActionFilter;
 using EventAPI.Filters;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EventAPI.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
+    [Consumes("application/json")]
+    [Produces("application/json")]
     public class ReservationController : ControllerBase
     {
         public IReservationService _reservationService;
@@ -16,21 +21,27 @@ namespace EventAPI.Controllers
             _reservationService = reservationService;
         }
 
-        #region "Get todos as reservas"
+        #region "Get todos as reservas | AUTENTICADO E AUTORIZADO(admin)"
         [HttpGet("/Reservation/Get")]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize(Roles = "admin")]
         public ActionResult<List<EventReservation>> GetAllReservations()
         {
             return Ok(_reservationService.GetAll());
         }
         #endregion
 
-        #region"Get todas reservas por evento"
+        #region"Get todas reservas por evento | AUTENTICADO E AUTORIZADO(admin)"
         [HttpGet("/Reservation/AllReservationsInEvent/{EventId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize(Roles = "admin")]
         public ActionResult<List<EventReservation>> GetReservationsInEvent(long EventId)
         {
             if (_reservationService.GetReservationsInEvent(EventId).Count == 0)
@@ -41,11 +52,13 @@ namespace EventAPI.Controllers
         }
         #endregion
 
-        #region "Get por NomePessoa e Titulo evento"
+        #region "Get por NomePessoa e Titulo evento | AUTENTICADO"
         [HttpGet("/Reservation/GetByPersonNameAndEventTitle/{Name},{EventTitle}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize]
         public ActionResult<List<EventReservation>> GetReservationsByEventId(string Name, string EventTitle)
         {
             if (_reservationService.GetReservationByNameAndEvent(Name, EventTitle).Count == 0)
@@ -56,10 +69,12 @@ namespace EventAPI.Controllers
         }
         #endregion
 
-        #region"Insert de nova reserva"
+        #region"Insert de nova reserva | AUTENTICADO"
         [HttpPost("/Reservation/Insert")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize]
         public ActionResult<EventReservation> PostReservation(EventReservation newReservation)
         {
             if (!_reservationService.PostReservation(newReservation))
@@ -70,11 +85,14 @@ namespace EventAPI.Controllers
         }
         #endregion
 
-        #region"Update quantidade de reservas"
+        #region"Update quantidade de reservas | AUTENTICADO E AUTORIZADO(admin)"
         [HttpPut("/Reservation/UpdateQuantity/{ReservationId},{Quantity}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize (Roles = "admin")]
         public ActionResult<CityEvent> UpdateQuantity(long ReservationId, int Quantity)
         {
             if (!_reservationService.UpdateQuantity(ReservationId, Quantity))
@@ -85,10 +103,13 @@ namespace EventAPI.Controllers
         }
         #endregion
 
-        #region"Delte reserva"
+        #region"Delte reserva | AUTENTICADO E AUTORIZADO(admin)"
         [HttpDelete("/Reservation/Delete/{ReservationId}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Authorize(Roles = "admin")]
         public ActionResult RemoveReservation(long ReservationId)
         {
             if (!_reservationService.RemoveReservation(ReservationId))

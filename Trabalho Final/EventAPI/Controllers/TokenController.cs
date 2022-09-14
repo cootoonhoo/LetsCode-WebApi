@@ -20,7 +20,7 @@ namespace EventAPI.Controllers
         [HttpGet]
         public IActionResult CreateToken(string cpf)
         {
-            var client = _clientService.ConsultaPorCpf(cpf)[0];
+            var client =  _clientService.ConsultaPorCpf(cpf)[0];
             if (client == null) {
                 return BadRequest();
             }

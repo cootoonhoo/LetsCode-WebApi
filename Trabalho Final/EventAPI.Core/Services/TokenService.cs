@@ -20,13 +20,13 @@ namespace EventAPI.Core.Services
             var tokenHandler = new JwtSecurityTokenHandler();
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Audience = "APIEvents.com",
                 Issuer = "APIClientes.com",
+                Audience = "APIEvents.com",
+                Expires = DateTime.UtcNow.AddHours(2),
                 Subject = new ClaimsIdentity(new Claim[] {
                     new Claim(ClaimTypes.Name, Name),
                     new Claim(ClaimTypes.Role, Permission)
                 }),
-                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
