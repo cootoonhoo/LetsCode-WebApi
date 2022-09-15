@@ -6,6 +6,9 @@ namespace EventAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [ProducesResponseType(StatusCodes.Status417ExpectationFailed)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
     public class TokenController : ControllerBase
     {
         public ITokenService _tokenService;
@@ -17,7 +20,7 @@ namespace EventAPI.Controllers
             _clientService = clientService;
         }
 
-        [HttpGet]
+        [HttpGet("/Get")]
         public IActionResult CreateToken(string cpf)
         {
             var client =  _clientService.ConsultaPorCpf(cpf)[0];
@@ -26,7 +29,7 @@ namespace EventAPI.Controllers
             }
             return Ok(_tokenService.GenerateTokenEventAPI(client.Nome, client.permissao));
         }
-        [HttpGet("/Token/ClientList")]
+        [HttpGet("/Get/ClientList")]
         public ActionResult<List<Cliente>> GetClients()
         {
             return Ok(_clientService.Consulta());

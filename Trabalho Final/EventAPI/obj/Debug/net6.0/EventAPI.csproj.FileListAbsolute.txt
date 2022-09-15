@@ -25,8 +25,6 @@ C:\Users\cooto\Desktop\LetsCode-WebApi\EventAPI\obj\Debug\net6.0\refint\EventAPI
 C:\Users\cooto\Desktop\LetsCode-WebApi\EventAPI\obj\Debug\net6.0\EventAPI.pdb
 C:\Users\cooto\Desktop\LetsCode-WebApi\EventAPI\obj\Debug\net6.0\EventAPI.genruntimeconfig.cache
 C:\Users\cooto\Desktop\LetsCode-WebApi\EventAPI\obj\Debug\net6.0\ref\EventAPI.dll
-C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\appsettings.Development.json
-C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\appsettings.json
 C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\EventAPI.exe
 C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\EventAPI.deps.json
 C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\EventAPI.runtimeconfig.json
@@ -71,3 +69,5 @@ C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\
 C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\cooto\Desktop\LetsCode-WebApi\Trabalho Final\EventAPI\bin\Debug\net6.0\appsettings.json

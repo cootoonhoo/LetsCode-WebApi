@@ -12,6 +12,9 @@ namespace EventAPI.Controllers
     [Route("[controller]")]
     [Consumes("application/json")]
     [Produces("application/json")]
+    [ProducesResponseType(StatusCodes.Status417ExpectationFailed)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
     public class EventController : ControllerBase
     {
         public IEventService _eventService;
@@ -30,7 +33,7 @@ namespace EventAPI.Controllers
         #endregion
 
         #region "Get evento por titulo"
-        [HttpGet("/Event/GetByTitle/{EventTilte}")]
+        [HttpGet("/Event/Get/{EventTilte}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -44,7 +47,7 @@ namespace EventAPI.Controllers
         #endregion
 
         #region"Get evento por Local e Data"
-        [HttpGet("/Event/GetByLocalAndDate/{Local},{Date}")]
+        [HttpGet("/Event/Get/{Local}/{Date}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -59,7 +62,7 @@ namespace EventAPI.Controllers
         #endregion
 
         #region "Get evento por range de preço e data"
-        [HttpGet("/Event/GetByRangePriceAndDate/{lowestValue},{highetsValue},{Date}")]
+        [HttpGet("/Event/Get/{lowestValue}&{highetsValue}/{Date}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
