@@ -1,3 +1,4 @@
+using CadastroCliente.Filters;
 using EventAPI.Core.Interfaces;
 using EventAPI.Core.Services;
 using EventAPI.Filters;
@@ -48,6 +49,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMvc(options =>
 {
     options.Filters.Add<ExceptionFilter>();
+    options.Filters.Add<LogActionFilter>();
+    options.Filters.Add<LogAuthorizationFilter>();
+    options.Filters.Add<LogResourceFilter>();
 });
 
 builder.Services.AddScoped<IReservationService, EventReservationService>();
