@@ -1,11 +1,13 @@
 ﻿using EventAPI.Core.Interfaces;
 using EventAPI.Core.Model;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors("PolicyCors")]
     [ProducesResponseType(StatusCodes.Status417ExpectationFailed)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]

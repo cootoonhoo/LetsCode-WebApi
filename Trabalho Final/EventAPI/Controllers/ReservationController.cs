@@ -5,6 +5,7 @@ using EventAPI.Core.Model;
 using EventAPI.Filters.ActionFilter;
 using EventAPI.Filters;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 
 namespace EventAPI.Controllers
 {
@@ -12,6 +13,7 @@ namespace EventAPI.Controllers
     [Route("[controller]")]
     [Consumes("application/json")]
     [Produces("application/json")]
+    [EnableCors("PolicyCors")]
     [ProducesResponseType(StatusCodes.Status417ExpectationFailed)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [ProducesResponseType(StatusCodes.Status503ServiceUnavailable)]
