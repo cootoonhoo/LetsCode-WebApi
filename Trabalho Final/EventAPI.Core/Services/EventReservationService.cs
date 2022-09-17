@@ -13,32 +13,98 @@ namespace EventAPI.Core.Services
 
         public List<EventReservation> GetAll()
         {
-            return _reservationRepository.GetAll();
+            try
+            {
+                return _reservationRepository.GetAll();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro no banco de dados. Metodo GetAll");
+                Console.WriteLine($"Mensagem: {ex.Message} ");
+                Console.WriteLine($"Site: {ex.TargetSite}");
+                Console.WriteLine($"Stack: {ex.StackTrace}");
+                throw;
+            }
         }
 
         public List<EventReservation> GetReservationByNameAndEvent(string Name, string EventTitle)
         {
-            return _reservationRepository.GetReservationByNameAndEvent(Name,EventTitle);
+            try
+            {
+                return _reservationRepository.GetReservationByNameAndEvent(Name, EventTitle);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro no banco de dados. Metodo GetReservationByNameAndEvent");
+                Console.WriteLine($"Mensagem: {ex.Message} ");
+                Console.WriteLine($"Site: {ex.TargetSite}");
+                Console.WriteLine($"Stack: {ex.StackTrace}");
+                throw;
+            }
         }
 
         public List<EventReservation> GetReservationsInEvent(long EventId)
         {
-            return _reservationRepository.GetReservationsInEvent(EventId);
+            try
+            {
+                return _reservationRepository.GetReservationsInEvent(EventId);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro no banco de dados. Metodo GetReservationsInEvent");
+                Console.WriteLine($"Mensagem: {ex.Message} ");
+                Console.WriteLine($"Site: {ex.TargetSite}");
+                Console.WriteLine($"Stack: {ex.StackTrace}");
+                throw;
+            }
         }
 
         public bool PostReservation(EventReservation newReservation)
         {
-            return _reservationRepository.PostReservation(newReservation);
+            try
+            {
+                return _reservationRepository.PostReservation(newReservation);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine("Erro no banco de dados. Metodo PostReservation");
+                Console.WriteLine($"Mensagem: {ex.Message} ");
+                Console.WriteLine($"Site: {ex.TargetSite}");
+                Console.WriteLine($"Stack: {ex.StackTrace}");
+                throw;
+            }
         }
 
         public bool RemoveReservation(long ReservationId)
         {
-            return _reservationRepository.RemoveReservation(ReservationId);
+            try
+            {
+                return _reservationRepository.RemoveReservation(ReservationId);
+            }
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine("Erro no banco de dados. Metodo RemoveReservation");
+                Console.WriteLine($"Mensagem: {ex.Message} ");
+                Console.WriteLine($"Site: {ex.TargetSite}");
+                Console.WriteLine($"Stack: {ex.StackTrace}");
+                throw;
+            }
         }
 
         public bool UpdateQuantity(long ReservationId, int Quantity)
         {
-            return _reservationRepository.UpdateQuantity(ReservationId, Quantity);
+            try
+            {
+                return _reservationRepository.UpdateQuantity(ReservationId, Quantity);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro no banco de dados. Metodo UpdateQuantity");
+                Console.WriteLine($"Mensagem: {ex.Message} ");
+                Console.WriteLine($"Site: {ex.TargetSite}");
+                Console.WriteLine($"Stack: {ex.StackTrace}");
+                throw;
+            }
         }
     }
 }

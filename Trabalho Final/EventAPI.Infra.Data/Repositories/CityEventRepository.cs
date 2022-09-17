@@ -15,9 +15,9 @@ namespace EventAPI.Infra.Data.Repositories
         }
         public List<CityEvent> GetAllEvents()
         {
-            var query = "SELECT * FROM CityEvent";
-            using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
-            return conn.Query<CityEvent>(query).ToList(); ;
+                var query = "SELECT * FROM CityEvent";
+                using var conn = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+                return conn.Query<CityEvent>(query).ToList();
         }
 
         public List<CityEvent> GetEventsByTitle(string Title)
